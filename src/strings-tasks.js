@@ -195,8 +195,15 @@ function removeLastOccurrences(str, value) {
  *   sumOfCodes('') => 0
  *   sumOfCodes() => 0
  */
-function sumOfCodes(/* str */) {
-  throw new Error('Not implemented');
+function sumOfCodes(str = '') {
+  let sumOfCodePoints = 0;
+  if (typeof str !== 'string') {
+    return 0;
+  }
+  for (let i = 0; i < str.length; i += 1) {
+    sumOfCodePoints += str.charCodeAt(i);
+  }
+  return sumOfCodePoints;
 }
 
 /**
@@ -242,8 +249,16 @@ function endsWith(str, substr) {
  *   formatTime(0, 45) => "00:45"
  *   formatTime(0, 0) => "00:00"
  */
-function formatTime(/* minutes, seconds */) {
-  throw new Error('Not implemented');
+function formatTime(minutes, seconds) {
+  let preparedMinutes = String(minutes);
+  let preparedSeconds = String(seconds);
+  if (minutes < 10) {
+    preparedMinutes = preparedMinutes.padStart(2, '0');
+  }
+  if (seconds < 10) {
+    preparedSeconds = preparedSeconds.padStart(2, '0');
+  }
+  return `${preparedMinutes}:${preparedSeconds}`;
 }
 
 /**
