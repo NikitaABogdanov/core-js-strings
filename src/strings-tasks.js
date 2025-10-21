@@ -155,8 +155,12 @@ function repeatString(str, times) {
  *   removeFirstOccurrences('I like legends', 'end') => 'I like legs'.
  *   removeFirstOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
-function removeFirstOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+function removeFirstOccurrences(str, value) {
+  const substrStartIndex = str.indexOf(value);
+  const substrLastIndex = value.length + substrStartIndex;
+  return substrStartIndex >= 0
+    ? str.slice(0, substrStartIndex) + str.slice(substrLastIndex)
+    : str;
 }
 
 /**
@@ -171,8 +175,12 @@ function removeFirstOccurrences(/* str, value */) {
  *   removeLastOccurrences('I like legends', 'end') => 'I like legs'.
  *   removeLastOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
-function removeLastOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+function removeLastOccurrences(str, value) {
+  const substrStartIndex = str.lastIndexOf(value);
+  const substrLastIndex = value.length + substrStartIndex;
+  return substrStartIndex >= 0
+    ? str.slice(0, substrStartIndex) + str.slice(substrLastIndex)
+    : str;
 }
 
 /**
