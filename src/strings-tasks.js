@@ -286,8 +286,10 @@ function reverseString(str) {
  *   orderAlphabetically('textbook') => 'bekoottx'
  *   orderAlphabetically('abc123xyz') => '123abcxyz'
  */
-function orderAlphabetically(/* str */) {
-  throw new Error('Not implemented');
+function orderAlphabetically(str) {
+  const arr = str.split('');
+  arr.sort();
+  return arr.join('');
 }
 
 /**
@@ -443,8 +445,9 @@ function getStringFromTemplate(firstName, lastName) {
  *   extractNameFromTemplate('Hello, John Doe!') => 'John Doe'
  *   extractNameFromTemplate('Hello, Chuck Norris!') => 'Chuck Norris'
  */
-function extractNameFromTemplate(/* value */) {
-  throw new Error('Not implemented');
+function extractNameFromTemplate(value) {
+  const arr = value.split(' ');
+  return `${arr[1]} ${arr[2].replace('!', '')}`;
 }
 
 /**
@@ -477,8 +480,13 @@ function unbracketTag(str) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+function extractEmails(str) {
+  const arr = str.split(';');
+  const result = [];
+  arr.forEach((email) => {
+    result.push(email);
+  });
+  return result;
 }
 
 /**
@@ -497,8 +505,29 @@ function extractEmails(/* str */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const arr = str.split('');
+  const result = [];
+  arr.forEach((char) => {
+    if (
+      (char.codePointAt() > 109 && char.codePointAt() < 123) ||
+      (char.codePointAt() > 77 && char.codePointAt() < 91)
+    ) {
+      result.push(
+        char.replace(char, String.fromCharCode(char.codePointAt() - 13))
+      );
+    } else if (
+      (char.codePointAt() > 96 && char.codePointAt() <= 109) ||
+      (char.codePointAt() > 64 && char.codePointAt() <= 77)
+    ) {
+      result.push(
+        char.replace(char, String.fromCharCode(char.codePointAt() + 13))
+      );
+    } else {
+      result.push(char);
+    }
+  });
+  return result.join('');
 }
 
 /**
@@ -525,8 +554,68 @@ function encodeToRot13(/* str */) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  const arr = [
+    'A♣',
+    '2♣',
+    '3♣',
+    '4♣',
+    '5♣',
+    '6♣',
+    '7♣',
+    '8♣',
+    '9♣',
+    '10♣',
+    'J♣',
+    'Q♣',
+    'K♣',
+    'A♦',
+    '2♦',
+    '3♦',
+    '4♦',
+    '5♦',
+    '6♦',
+    '7♦',
+    '8♦',
+    '9♦',
+    '10♦',
+    'J♦',
+    'Q♦',
+    'K♦',
+    'A♥',
+    '2♥',
+    '3♥',
+    '4♥',
+    '5♥',
+    '6♥',
+    '7♥',
+    '8♥',
+    '9♥',
+    '10♥',
+    'J♥',
+    'Q♥',
+    'K♥',
+    'A♠',
+    '2♠',
+    '3♠',
+    '4♠',
+    '5♠',
+    '6♠',
+    '7♠',
+    '8♠',
+    '9♠',
+    '10♠',
+    'J♠',
+    'Q♠',
+    'K♠',
+  ];
+  let result;
+  for (let i = 0; i < arr.length; i += 1) {
+    if (value === arr[i]) {
+      result = i;
+    }
+  }
+  return result;
 }
 
 module.exports = {
